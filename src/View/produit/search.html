@@ -1,0 +1,29 @@
+<div class="row row-offcanvas row-offcanvas-right">
+    <!--/.sidebar-offcanvas-->
+
+    <div class="col-xs-12 col-sm-12">
+        <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+        <div class="alert alert-success">
+            <h1>Recherche :</h1>
+            <p><?= $title ?></p>
+        </div>
+        <?php
+            foreach ($produits as $produit) :
+            ?>
+        <div class="col-xs-6 col-lg-4 thumb-produit">
+            <div class="panel-heading text-center"><h2><a href="<?= $url ?>produit/affiche/<?= $produit-> getId_produit(); ?>"><?= $produit ->getTitre(); ?><a/></h2><br>
+                <?= '<img class="img-responsive" src="'. $url .'photo/' . $produit ->getPhoto() .'">';?>
+                <?= '<span class="label label-success col-lg-offset-8">' . $produit -> getPrix() . ' €</span>' ?>
+            </div>
+            <p><?= $produit ->getDescription(); ?>...</p>
+            <p><a class="btn btn-primary col-lg-offset-2" href="<?= $url ?>produit/affiche/<?= $produit-> getId_produit(); ?>" role="button">En savoir plus...</a></p>
+        </div>
+        <!--/row-->
+        <?php endforeach; ?>
+    </div>
+    <!--/.col-xs-12.col-sm-9-->
+
+</div>
+<!--/row-->

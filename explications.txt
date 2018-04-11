@@ -1,0 +1,53 @@
+--------------
+Arborescence : 
+--------------
+
+	app/ : La configuration de notre application (infos de connexion BDD) 
+	src/ : Le code PHP et HTML spécifique à notre app (Notre code)
+	vendor/ : Coeur / Code général de l'app
+	web/ : Le repertoire web racine (index.php, img/, photo/, js/, css/, font/... bibliothèques FRONT )
+
+	
+---------------------------------
+Nature des différents fichiers  :
+---------------------------------
+
+app/
+	Config/
+		parameters.php : Contient toutes les informations de connexion à notre BDD... et éventuellement d'autres paramètres de notre app
+
+	Config.php : Contient une classe dont l'objectif est de récupérer les infos de connexion et de les "servir" à notre futur PDOManager qui fera la connexion à la BDD via PDO. 
+		
+vendor/
+	autoload.php : Permet d'inclure les bons fichiers au bon moment (lors des instanciations), et nous permet d'éviter d'avoir à faire de nombreux require... Attention, certains fichiers seront dans vendor/, et d'autres dans src/, notre autoload devra donc savoir les distinguer...
+		
+src/
+	Entity/
+		Produit.php   -   Membre.php     -    Commande.php : 
+		Ces classes contiennent toutes les propriétés des entités de notre application (et les getter et les setter). On les appelle des POPO (Plain Old PHP Object).
+		On travaille en objet... Il nous faut donc des classes qui nous permettent de construire des objets pour chaque entité de notre site. 
+		
+
+web/
+	index.php : Clé d'entrée de notre application (Symfony : app.php ou app_dev.php). C'est à partir de là que le site se déploie. Dans notre application, c'est ici que l'on créer la session, que faisons le require de l'autoload et que nous instancierons la classe Application (interupteur)
+	
+	
+vendor/
+	Manager/
+		PDOManager : Cette classe représente la connexion à la BDD. Elle contient et nous retourne notre objet PDO grâce auquel nous pourrons effectuer des requêtes. 
+		Cette classe est un Singleton, cela signifie qu'il ne peut y avoir qu'un seul objet issu de cette classe. 
+		
+	Model/
+		Model.php : Un model centralise tout ce qui touche à la BDD. Concrètement il ne devrait y avoir de requête SQL en dehors de l'un de nos models. Dans ce fichier nous allons coder les outils communs à tous nos models ainsi que les requetes génériques.
+		
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
